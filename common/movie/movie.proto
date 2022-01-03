@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package movie;
+
+option go_package = "./movie_grpc";
+
+message MovieList {
+    repeated Search Search = 1;
+    string totalResults = 2;
+    string Response = 3;
+    int64 totalPage = 4;
+    int64 page = 5;
+}
+
+message Search {
+    string Title = 1;
+    string Year = 2;
+    string imdbID = 3;
+    string Type = 4;
+    string Poster = 5;
+    MovieDetail movieDetail = 6;
+}
+
+message MovieDetail {
+    string Rated = 1;
+    string Released = 2;
+    string Runtime = 3;
+    string Genre = 4;
+    string Director = 5;
+    string Writer = 6;
+    string Actors = 7;
+    string Plot = 8;
+    string Language = 9;
+    string Country = 10;
+    string Awards = 11;
+    string Poster = 12;
+    repeated MovieRatings Ratings = 13;
+    string Metascore = 14;
+    string imdbRating = 15;
+    string imdbVotes = 16;
+    string imdbID = 17;
+    string Type = 18;
+    string DVD = 19;
+    string BoxOffice = 20;
+    string Production = 21;
+    string Website = 22;
+    string Response = 23;
+}
+
+message MovieRatings {
+    string Source = 1;
+    string Value = 2;
+}
+
+message MovieRequest {
+    string searchword = 1;
+    string pagination = 2;
+}
+
+service Movie {
+    rpc Search(MovieRequest) returns (MovieList) {}
+}
+
